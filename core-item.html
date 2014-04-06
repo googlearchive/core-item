@@ -21,12 +21,12 @@ Example:
 
 <link rel="import" href="../core-icon/core-icon.html">
 
-<polymer-element name="core-item" extends="polymer-ui-theme-aware" attributes="src label icon item href">
+<polymer-element name="core-item" extends="core-theme-aware" attributes="src label icon item href">
 <template>
 
   <link rel="stylesheet" href="core-item.css">
 
-  <polymer-ui-icon src="{{src}}" icon="{{icon}}" showing?="{{icon || src}}"></polymer-ui-icon>
+  <core-icon src="{{src}}" icon="{{icon}}" showing?="{{icon || src}}"></core-icon>
   <span id="label">{{label}}<content></content></span>
   <a id="link" href="{{href}}" hidden?="{{!href}}"></a>
 
@@ -34,7 +34,6 @@ Example:
 <script>
 
   Polymer('core-item', {
-
     /**
       * The URL of an image for the icon.
       *
@@ -59,7 +58,7 @@ Example:
       *     <core-item icon="favorite" label="Favorite" href="http://www.polymer-project.org/"></core-item>
       *
       * If you want more control on the link, e.g. specify the target for where to
-      * open the linked document, you can put &lt;a> directly inside the menu-item.
+      * open the linked document, you can put &lt;a> directly inside the item.
       *
       * Example:
       *
