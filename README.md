@@ -1,4 +1,4 @@
 core-item
 =========
 
-Simple 'item' element for lists and menus
+See the [component page](http://polymer.github.io/core-item) for more information.
