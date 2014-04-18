@@ -2,8 +2,9 @@
   "name": "core-item",
   "private": true,
   "dependencies": {
-    "core-icon": "Polymer/core-icon#master",
-    "core-theme-aware": "Polymer/core-theme-aware#master",
-    "core-layout": "Polymer/core-layout#master"
-  }
+    "core-icon": "Polymer/core-icon#0.2.3",
+    "core-theme-aware": "Polymer/core-theme-aware#0.2.3",
+    "core-layout": "Polymer/core-layout#0.2.3"
+  },
+  "version": "0.2.3"
 }
