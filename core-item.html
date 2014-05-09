@@ -37,15 +37,11 @@ Example:
   
   <div class="item-container core-h core-align-center">
   
-    <template if="{{icon || src}}">
-      <core-icon src="{{src}}" icon="{{icon}}"></core-icon>
-    </template>
+    <core-icon src="{{src}}" icon="{{icon}}" hidden?="{{!src && !icon}}"></core-icon>
     
     <span id="label" core-flex class="core-h core-align-center">{{label}}<content></content></span>
     
-    <template if="{{href}}">
-      <a id="link" href="{{href}}"></a>
-    </template>
+    <a id="link" href="{{href}}" hidden?="{{!href}}"></a>
     
   </div>
 
