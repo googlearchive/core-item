@@ -15,11 +15,13 @@ Example:
 
     <core-item icon="settings" label="Settings"></core-item>
     
-To use as a link, set `href` property.
+To use as a link, put &lt;a&gt; element in the item.
 
 Example:
 
-    <core-item icon="settings" label="Settings" href="/settings"></core-item>
+    <core-item icon="settings" label="Settings">
+      <a href="#settings" target="_self"></a>
+    </core-item>
 
 @group Polymer Core Elements
 @element core-item
@@ -52,27 +54,6 @@ Example:
      * Specifies the icon from the Polymer icon set.
      *
      * @attribute icon
-     * @type string
-     * @default ''
-     */
-
-    /**
-     * Specifies a link target.
-     *
-     * Example:
-     *
-     *     <core-item icon="favorite" label="Favorite" href="http://www.polymer-project.org/"></core-item>
-     *
-     * If you want more control on the link, e.g. specify the target for where to
-     * open the linked document, you can put &lt;a> directly inside the item.
-     *
-     * Example:
-     *
-     *     <core-item icon="favorite" label="Favorite">
-     *       <a href="http://www.polymer-project.org/" target="_self"></a>
-     *     </core-item>
-     *
-     * @attribute href
      * @type string
      * @default ''
      */
