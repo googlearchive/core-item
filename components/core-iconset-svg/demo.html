@@ -11,18 +11,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <html>
 <head>
 
-  <title>core-iconset</title>
-
+  <title>core-iconset-svg</title>
   <script src="../platform/platform.js"></script>
-  <link rel="import" href="core-iconset.html">
+  <link rel="import" href="svg-sample-icons.html">
+  <style shim-shadowdom>
+    svg-icon-demo:nth-of-type(1) {
+      fill: orange;
+    }
 
+    svg-icon-demo:nth-of-type(2) {
+      fill: green;
+      stroke: orange;
+    }
+
+    svg-icon-demo:nth-of-type(3) {
+      fill: navy;
+    }
+
+    svg-icon-demo {
+      transition: all 0.5s;
+      -webkit-transition: all 0.5s;
+    }
+
+    svg-icon-demo:hover {
+      -webkit-filter: drop-shadow( 2px 2px 2px #333 );
+      filter: drop-shadow( 2px 2px 2px #333 );
+    }
+  </style>
 </head>
 <body unresolved>
-  
-  <!-- Register an icon set; you can do this anywhere, including an HTMLImport! -->
-  <core-iconset id="my-icons" src="my-icons.png" width="96" iconSize="24"
-      icons="location place starta stopb bus car train walk">
-  </core-iconset>
 
   <!-- 
     Create an element that uses an iconset to display an icon.
@@ -32,23 +49,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Here we're using the converntion 'iconset:icon' to specify a particular
     iconset and an icon name within that set.
    -->
-  <polymer-element name="icon-demo" attributes="icon">
+  <polymer-element name="svg-icon-demo" attributes="icon size">
 
     <template>
       <style>
         :host {
           display: inline-block;
+          vertical-align: middle;
           margin: 2px;
         }
       </style>
       <core-iconset id="meta"></core-iconset>
-      <content></content>
     </template>
 
     <script>
 
-      Polymer('icon-demo', {
+      Polymer('svg-icon-demo', {
         
+        size: 100,
         iconChanged: function() {
           if (!this.icon) {
             return;
@@ -57,11 +75,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           var icon = parts.pop();
           // find the iconSet for the name given via the icon property
           var iconset = this.$.meta.byId(parts.pop());
+          this.style.height = this.style.width = this.size + 'px';
           if (iconset) {
-            // size the element as needed
-            this.style.height = this.style.width = iconset.iconSize + 'px';
-            // use iconset's applyAsBackground method to set the given icon
-            // as the element's background image.
             iconset.applyIcon(this, icon);
           }
         }
@@ -72,24 +87,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   </polymer-element>
 
-  <!-- Now create a bunch of icons using our iconset -->
-  <icon-demo icon="my-icons:location"></icon-demo>
-  <icon-demo icon="my-icons:place"></icon-demo>
-  <icon-demo icon="my-icons:starta"></icon-demo>
-  <icon-demo icon="my-icons:stopb"></icon-demo>
-  <icon-demo icon="my-icons:bus"></icon-demo>
-  <icon-demo icon="my-icons:car"></icon-demo>
-  <icon-demo icon="my-icons:train"></icon-demo>
-  <icon-demo icon="my-icons:walk"></icon-demo>
-  <br>
-  <!-- icons may also be specified by index -->
-  <icon-demo icon="my-icons:0"></icon-demo>
-  <icon-demo icon="my-icons:1"></icon-demo>
-  <icon-demo icon="my-icons:2"></icon-demo>
-  <icon-demo icon="my-icons:3"></icon-demo>
-  <icon-demo icon="my-icons:4"></icon-demo>
-  <icon-demo icon="my-icons:5"></icon-demo>
-  <icon-demo icon="my-icons:6"></icon-demo>
-  <icon-demo icon="my-icons:7"></icon-demo>
- </body>
+  <!-- Now some icons using our iconset -->
+  <div>
+    <template repeat="{{}}">
+      <svg-icon-demo icon="{{}}"></svg-icon-demo>
+    </template>
+  </div>
+  <core-meta id="meta" type="iconset"></core-meta>
+  <script>
+    addEventListener('polymer-ready', function() {
+      var icons = document.querySelector('#meta').byId('svg-sample-icons').iconNames;
+      icons = icons.map(function(ic){ return 'svg-sample-icons:' + ic });
+      var plates = document.querySelectorAll('template');
+      for (var i = 0, p; p = plates[i]; i++) {
+        p.model = icons;
+      }
+    });
+  </script>
+</body>
 </html>
