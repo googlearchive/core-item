@@ -22,11 +22,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   font-weight: bold;
 }
 
-core-icon {
+#icon {
   margin: 0 16px 0 4px;
 }
 
-:host(.font-scalable) core-icon {
+:host(.font-scalable) #icon {
   margin: 0 1em 0 0.25em;
   height: 1.5em;
   width: 1.5em;
