@@ -30,9 +30,9 @@ Example:
 
 <link rel="import" href="../core-icon/core-icon.html">
 
-<polymer-element name="core-item" attributes="label icon src" horizontal center layout>
+<dom-module name="core-item">
+<link rel="stylesheet" href="core-item.css">
 <template>
-  <link rel="stylesheet" href="core-item.css">
   <template if="{{icon || src}}">
     <core-icon src="{{src}}" id="icon" icon="{{icon}}" hidden?="{{!src && !icon}}"></core-icon>
   </template>
@@ -41,33 +41,40 @@ Example:
 </template>
 <script>
 
-  Polymer('core-item', {
-    
-    /**
-     * The URL of an image for the icon.
-     *
-     * @attribute src
-     * @type string
-     * @default ''
-     */
+  Polymer({
+    is: 'core-item',
+    hostAttributes: {
+        class: "layout horizontal center"
+    },
+    properties: {
+        /**
+         * The URL of an image for the icon.
+         *
+         * @attribute src
+         * @type string
+         * @default ''
+         */
+        src: String,
 
-    /**
-     * Specifies the icon from the Polymer icon set.
-     *
-     * @attribute icon
-     * @type string
-     * @default ''
-     */
+        /**
+         * Specifies the icon from the Polymer icon set.
+         *
+         * @attribute icon
+         * @type string
+         * @default ''
+         */,
+        icon: String,
 
-    /**
-     * Specifies the label for the menu item.
-     *
-     * @attribute label
-     * @type string
-     * @default ''
-     */
-
+        /**
+         * Specifies the label for the menu item.
+         *
+         * @attribute label
+         * @type string
+         * @default ''
+         */
+        label: String
+    }
   });
 
 </script>
-</polymer-element>
+</dom-module>
